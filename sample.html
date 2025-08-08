@@ -26,7 +26,7 @@
 
     <a-scene embedded arjs renderer="colorManagement: true; toneMapping: reinhard; exposure: 1.5">
       <a-marker preset="hiro" id="hiro-marker" marker-status-logger>
-	<a-asset-item id="cloudmodel" src="glb/CM_kantou_2025072604.glb"></a-asset-item>
+	<a-asset-item id="cloudmodel" src="clouds.glb"></a-asset-item>
 	<!-- GLB は（基本的に） km 単位で書かれている。縦方向に10倍に拡大。-->
 	<a-entity gltf-model="#cloudmodel"
 		  scale="0.003 0.030 0.003"

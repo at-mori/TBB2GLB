@@ -48,9 +48,9 @@ python3 makeCloudGLB.py REGION YYYYMMDDHH
 
 ### 3. WebAR で表示する
 
-生成された `.glb` ファイルと `Clouds_Cum.html` を同じディレクトリに置き、Webサーバーで公開します。
+生成された `.glb` ファイルと `sample.html` を同じディレクトリに置き、Webサーバーで公開します。その際、ファイル内の`clouds.glb` を生成された `.glb` ファイルのファイル名に置き換えます。
 
-スマートフォンなどで `Clouds_Cum.html` にアクセスし、マーカー（Hiroなど）をカメラに映せば、AR上に雲の立体モデルが表示されます。
+スマートフォンなどで `sample.html` にアクセスし、マーカー（Hiroなど）をカメラに映せば、AR上に雲の立体モデルが表示されます。
 
 ## ■ データの出典
 
@@ -64,7 +64,7 @@ python3 makeCloudGLB.py REGION YYYYMMDDHH
 ```
 CloudModelGenerator/
 ├── makeCloudGLB.py              # メインスクリプト
-├── Clouds_Cum.html              # A-Frame + AR.js による表示例
+├── sample.html                  # A-Frame + AR.js による表示例
 ├── ne_10m_coastline.geojson     # 海岸線データ
 └── README.md                    # このファイル
 ```
