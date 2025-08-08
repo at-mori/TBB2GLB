@@ -25,7 +25,7 @@ pip install numpy xarray trimesh geopandas shapely
 
 ### 1. 海岸線データの準備
 
-このスクリプトは、雲モデルと共に表示する海岸線データを必要とします。[Natural Earth](https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/) から10m解像度の海岸線データ（`ne_10m_coastline.zip`）をダウンロードし、解凍して得られる `ne_10m_coastline.geojson` をスクリプトと同じディレクトリに配置してください。
+このスクリプトは、雲モデルと共に表示する海岸線データを必要とします。[Natural Earth](https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/) から10m解像度の海岸線データ（`ne_10m_coastline.zip`）をダウンロードし、解凍して得られる `ne_10m_coastline.geojson` が付属しています。必要であれば、他の解像度のデータを使ってください。
 
 ### 2. 雲データの取得とGLBモデルの生成
 
@@ -38,10 +38,10 @@ python3 makeCloudGLB.py REGION YYYYMMDDHH
 ```
 
 - **REGION**: 表示する領域を指定します。以下のいずれかを選択できます。
-  - `japan`: 日本全国
-  - `southjapan`: 西日本
-  - `hokkaido`: 北海道
-  - `kantou`: 関東
+  - `japan`: 日本近辺
+  - `southjapan`: 日本の南部と南海上
+  - `hokkaido`: 北海道近辺
+  - `kantou`: 関東近辺
 - **YYYYMMDDHH**: 世界標準時（UTC）での年月日と時間を指定します。（例: `2024082800`）
 
 実行が成功すると、`CM_REGION_YYYYMMDDHH.glb` という名前のファイルが生成されます。
