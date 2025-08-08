@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <style>
+      body { margin: 0; overflow: hidden; }
+      /* デバッグ用のメッセージ表示エリア */
+      #debug-message {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        font-family: monospace;
+        z-index: 9999;
+        font-size: 10px; /* 👈 これを追加 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="debug-message">AR Status: Waiting for marker...</div>
+
+    <a-scene embedded arjs renderer="colorManagement: true; toneMapping: reinhard; exposure: 1.5">
+      <a-marker preset="hiro" id="hiro-marker" marker-status-logger>
+	<a-asset-item id="cloudmodel" src="glb/CM_kantou_2025072604.glb"></a-asset-item>
+	<!-- GLB は（基本的に） km 単位で書かれている。縦方向に10倍に拡大。-->
+	<a-entity gltf-model="#cloudmodel"
+		  scale="0.003 0.030 0.003"
+		  position="0 0 0"
+		  rotation="0 0 0"
+                  material="side: double"
+		  ></a-entity>
+	<!-- 背景に暗い灰色のシートを置く -->
+	<a-plane position="0 -0.3 0" rotation="-90 0 0" width="4" height="4"
+		 color="#202020" side="double"></a-plane>
+      </a-marker>
+
+      <!-- 明るめのライトを追加 -->
+      <a-entity light="type: ambient; color: #ffffff; intensity: 1.5"></a-entity>
+      <a-entity light="type: directional; color: #ffffff; intensity: 3.0" position="1 1 1"></a-entity>
+      
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      // マーカーの認識状態をログに出力し、図形を制御するA-Frameコンポーネント
+      AFRAME.registerComponent('marker-status-logger', {
+        init: function () {
+          const marker = this.el;
+          const indicatorBox = document.getElementById('marker-indicator');
+          const debugMessage = document.getElementById('debug-message');
+
+          marker.addEventListener('markerFound', function() {
+            console.log('Marker Found: HIRO');
+            debugMessage.textContent = 'データ：千葉大学環境リモートセンシング研究センター(CeRES)から／AR Status: Marker Found!';
+            indicatorBox.setAttribute('visible', true); // マーカー認識時にボックスを表示
+          });
+
+          marker.addEventListener('markerLost', function() {
+            console.log('Marker Lost: HIRO');
+            debugMessage.textContent = 'データ：千葉大学環境リモートセンシング研究センター(CeRES)から／AR Status: Marker Lost. Waiting...';
+            indicatorBox.setAttribute('visible', false); // マーカー非認識時にボックスを非表示
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
