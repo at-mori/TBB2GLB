@@ -48,7 +48,7 @@ python3 makeCloudGLB.py REGION YYYYMMDDHH
 
 ### 3. WebAR で表示する
 
-生成された `.glb` ファイルと `sample.html` を同じディレクトリに置き、Webサーバーで公開します。その際、ファイル内の`clouds.glb` を生成された `.glb` ファイルのファイル名に置き換えます。
+生成された `.glb` ファイルと `sample.html` を同じディレクトリに置き、Webサーバーで公開します。その際、`sample.html` 内の`clouds.glb` を生成された `.glb` ファイルのファイル名に置き換えます。
 
 スマートフォンなどで `sample.html` にアクセスし、マーカー（Hiroなど）をカメラに映せば、AR上に雲の立体モデルが表示されます。
 
